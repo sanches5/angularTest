@@ -14,7 +14,7 @@ export class MenuComponent implements OnInit {
 
 
   constructor() {
-    this.products = [{ name: 'bob' }, { name: 'eminem' }, { name: 'roman' }];
+    this.products = [{ name: 'bob' }, { name: 'tasks' }, { name: 'listCheck' }];
   }
   setUrl = (e = '') => {
     console.log(e);

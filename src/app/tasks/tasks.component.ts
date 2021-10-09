@@ -1,11 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-eminem',
-  templateUrl: './eminem.component.html',
-  styleUrls: ['./eminem.component.css'],
+  selector: 'app-tasks',
+  templateUrl: './tasks.component.html',
+  styleUrls: ['./tasks.component.css'],
 })
-export class EminemComponent implements OnInit {
+export class TasksComponent implements OnInit {
   constructor() {}
   @Input() tasks: any;
   @Input() changeAmount: any;

@@ -7,8 +7,8 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { BodyComponent } from './body/body.component';
 import { RouterModule } from '@angular/router';
-import { EminemComponent } from './eminem/eminem.component';
-import { RomanComponent } from './roman/roman.component';
+import { TasksComponent } from './tasks/tasks.component';
+import { ListCheckComponent } from './listCheck/listCheck.component';
 import { FormTaskDirective } from './form-task.directive';
 
 
@@ -18,8 +18,8 @@ import { FormTaskDirective } from './form-task.directive';
     AppComponent,
     MenuComponent,
     BodyComponent,
-    EminemComponent,
-    RomanComponent,
+    TasksComponent,
+    ListCheckComponent,
     FormTaskDirective
   ],
   imports: [

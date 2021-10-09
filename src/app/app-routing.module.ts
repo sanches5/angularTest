@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {BodyComponent} from './body/body.component';
-import {EminemComponent} from './eminem/eminem.component';
-import {RomanComponent} from './roman/roman.component';
+import {TasksComponent} from './tasks/tasks.component';
+import {ListCheckComponent} from './listCheck/listCheck.component';
 
 const routes: Routes = [
   { path: 'bob', component: BodyComponent },
-  { path: 'eminem', component: EminemComponent},
-  { path: 'roman', component: RomanComponent },
+  { path: 'tasks', component: TasksComponent},
+  { path: 'listCheck', component: ListCheckComponent },
 ];
 
 @NgModule({

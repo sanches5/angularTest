@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EminemComponent } from './eminem.component';
+import { ListCheckComponent } from './listCheck.component';
 
-describe('EminemComponent', () => {
-  let component: EminemComponent;
-  let fixture: ComponentFixture<EminemComponent>;
+describe('ListCheckComponent', () => {
+  let component: ListCheckComponent;
+  let fixture: ComponentFixture<ListCheckComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EminemComponent ]
+      declarations: [ ListCheckComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EminemComponent);
+    fixture = TestBed.createComponent(ListCheckComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

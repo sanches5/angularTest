@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {BodyComponent} from './body/body.component';
-import {EminemComponent} from './eminem/eminem.component';
-import {RomanComponent} from './roman/roman.component';
+import {TasksComponent} from './tasks/tasks.component';
+import {ListCheckComponent} from './listCheck/listCheck.component';
 
 @Component({
   selector: 'app-root',
@@ -48,12 +48,12 @@ export class AppComponent {
       component.sendTitle = this.sendTitle;
       component.titleTask = this.titleTask;
     }
-    if (component instanceof EminemComponent) {
+    if (component instanceof TasksComponent) {
       component.tasks = JSON.parse(localStorage.getItem('tasks') as string);
       component.changeAmount = this.changeAmount;
       component.changes = this.changes;
     }
-    if (component instanceof RomanComponent) {
+    if (component instanceof ListCheckComponent) {
       component.changes =  JSON.parse(localStorage.getItem('changes') as string);
     }
   }

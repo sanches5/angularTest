@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RomanComponent } from './roman.component';
+import { TasksComponent } from './tasks.component';
 
-describe('RomanComponent', () => {
-  let component: RomanComponent;
-  let fixture: ComponentFixture<RomanComponent>;
+describe('TasksComponent', () => {
+  let component: TasksComponent;
+  let fixture: ComponentFixture<TasksComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RomanComponent ]
+      declarations: [ TasksComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RomanComponent);
+    fixture = TestBed.createComponent(TasksComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
