@@ -1,0 +1,10 @@
+<div style="text-align: center;">
+  <p>Work body!</p>
+  <label style="display: flex; align-items: center">
+    <h1 style="margin-right: 5px">text</h1>
+    <input style="width: 250px; height: 20px; margin-right: 20px" type="text" (change)="pushName($event.target.value)" value="{{userName}}">
+    <h1 style="margin-right: 5px">title</h1>
+    <input style="width: 250px; height: 20px; margin-right: 20px" type="text" (change)="sendTitle($event.target.value)" value="{{titleTask}}">
+  </label>
+  <button (click)="sendBE()">send</button>
+</div>

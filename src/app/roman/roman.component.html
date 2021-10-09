@@ -1,0 +1,17 @@
+<div style="text-align: center;">
+
+<p>roman works!</p>
+<div *ngIf="changes.length">
+  <div style="display: flex; margin: auto; width: 350px"  *ngFor="let change of changes">
+    <div style="border: 1px solid blue; margin: 5px; padding: 3px; width: 150px">
+      title - {{change.title}}
+    </div>
+    <div style="border: 1px solid black; margin: 5px; padding: 3px; width: 150px">
+      idTask - {{change.idTask}}
+    </div>
+    <div style="border: 1px solid red; margin: 5px; padding: 3px; width: 150px">
+      change - {{change.change}}
+    </div>
+  </div>
+</div>
+</div>

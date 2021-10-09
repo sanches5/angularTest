@@ -1,0 +1,7 @@
+<div>
+  <app-menu></app-menu>
+  <h3>input text {{itemImageUrl}}</h3>
+  <h3>input title {{titleTask}}</h3>
+</div>
+
+<router-outlet (activate)="onChildLoaded($event)"></router-outlet>

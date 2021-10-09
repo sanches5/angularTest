@@ -1,0 +1,6 @@
+<div style="display: flex; flex-direction: column"  *ngFor="let product of products">
+  <nav>
+    <a routerLink="{{product.name}}" routerLinkActive="active">{{product.name}}</a>
+  </nav>
+</div>
+
