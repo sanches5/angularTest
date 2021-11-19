@@ -77,17 +77,17 @@ export class AppComponent {
   changeAmount = (idTask: number, name: string) => {
     const id = this.changes[this.changes.length - 1 ]?.id + 1;
     const state = this.changes.some(
-      (e: change) => e.idTask === idTask
+      (item: change) => item.idTask === idTask
     );
 
     if (this.changes.length && state) {
       this.changes = this.changes.map(
-        (e: change) => {
-          if (e.idTask === idTask) {
-            e.change++;
-            return e;
+        (item: change) => {
+          if (item.idTask === idTask) {
+            item.change++;
+            return item;
           }
-          return e;
+          return item;
         }
       );
       localStorage.setItem('changes', JSON.stringify(this.changes));
