@@ -6,15 +6,25 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./body.component.css']
 })
 export class BodyComponent implements OnInit {
-  @Input() pushName: any;
-  @Input() sendBE: any;
-  @Input() userName: any;
-  @Input() titleTask: any;
-  @Input() sendTitle: any;
+  @Input() pushName!: (s: string) => void;
+  @Input() createTask!: () => void;
+  @Input() userName!: string;
+  @Input() titleTask!: string;
+  @Input() sendTitle!: (s: string) => void;
 
   constructor() { }
+  clearFields(): void {
+      this.pushName('');
+      this.sendTitle('');
+      this.userName = '';
+      this.titleTask = '';
+  }
+
+  createTaskAndClear(): void {
+    this.createTask();
+    this.clearFields();
+  }
 
   ngOnInit(): void {
   }
-
 }

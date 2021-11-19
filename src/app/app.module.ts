@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { TasksComponent } from './tasks/tasks.component';
 import { ListCheckComponent } from './listCheck/listCheck.component';
 import { FormTaskDirective } from './form-task.directive';
+import {FormsModule} from '@angular/forms';
 
 
 
@@ -25,7 +26,8 @@ import { FormTaskDirective } from './form-task.directive';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MobxAngularModule
+    MobxAngularModule,
+    FormsModule
   ],
   exports: [RouterModule],
   providers: [],

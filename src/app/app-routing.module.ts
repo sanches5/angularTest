@@ -5,7 +5,7 @@ import {TasksComponent} from './tasks/tasks.component';
 import {ListCheckComponent} from './listCheck/listCheck.component';
 
 const routes: Routes = [
-  { path: 'bob', component: BodyComponent },
+  { path: 'form', component: BodyComponent },
   { path: 'tasks', component: TasksComponent},
   { path: 'listCheck', component: ListCheckComponent },
 ];

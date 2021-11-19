@@ -3,6 +3,20 @@ import {BodyComponent} from './body/body.component';
 import {TasksComponent} from './tasks/tasks.component';
 import {ListCheckComponent} from './listCheck/listCheck.component';
 
+type change = {
+  id: number
+  idTask: number
+  change: number
+  title: string
+};
+
+type task = {
+  id: number
+  change: boolean
+  title: string
+  task: string
+};
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,28 +25,28 @@ import {ListCheckComponent} from './listCheck/listCheck.component';
 
 export class AppComponent {
   title = 'angularTest';
-  itemImageUrl = localStorage.getItem('value') || '';
+  itemImageUrl: string = localStorage.getItem('value') || '';
 
-  tasks = JSON.parse(localStorage.getItem('tasks') as string) || [];
+  tasks: task[] = JSON.parse(localStorage.getItem('tasks') as string) || [];
 
-  changes = JSON.parse(localStorage.getItem('changes') as string) || [];
+  changes: change[] = JSON.parse(localStorage.getItem('changes') as string) || [];
 
-  titleTask = localStorage.getItem('title') || '';
+  titleTask: string = localStorage.getItem('title') || '';
 
 
-  send = (value: string) => {
+  send = (value: string): void => {
     this.itemImageUrl = value;
     localStorage.setItem('value', value);
     console.log('send value input to local', value);
   }
 
-  sendTitle = (value: string) => {
+  sendTitle = (value: string): void => {
     this.titleTask = value;
     localStorage.setItem('title', value);
     console.log('send value input to local', value);
   }
 
-  sendBackEnd = () => {
+  createTask = (): void => {
     console.log('set value itemImageUrl', this.itemImageUrl);
     const id = this.tasks[this.tasks.length - 1 ]?.id + 1;
     this.tasks = [...this.tasks, {id: id || 1, task: this.itemImageUrl, change: false, title: this.titleTask}];
@@ -44,15 +58,17 @@ export class AppComponent {
     if (component instanceof BodyComponent) {
       component.userName = this.itemImageUrl;
       component.pushName = this.send;
-      component.sendBE = this.sendBackEnd;
+      component.createTask = this.createTask;
       component.sendTitle = this.sendTitle;
       component.titleTask = this.titleTask;
     }
+
     if (component instanceof TasksComponent) {
       component.tasks = JSON.parse(localStorage.getItem('tasks') as string);
       component.changeAmount = this.changeAmount;
       component.changes = this.changes;
     }
+
     if (component instanceof ListCheckComponent) {
       component.changes =  JSON.parse(localStorage.getItem('changes') as string);
     }
@@ -61,12 +77,12 @@ export class AppComponent {
   changeAmount = (idTask: number, name: string) => {
     const id = this.changes[this.changes.length - 1 ]?.id + 1;
     const state = this.changes.some(
-      (e: { idTask: number }) => e.idTask === idTask
+      (e: change) => e.idTask === idTask
     );
 
     if (this.changes.length && state) {
       this.changes = this.changes.map(
-        (e: { idTask: number; change: number }) => {
+        (e: change) => {
           if (e.idTask === idTask) {
             e.change++;
             return e;

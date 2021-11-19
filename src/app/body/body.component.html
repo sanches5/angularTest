@@ -1,10 +1,12 @@
-<div style="text-align: center;">
-  <p>Work body!</p>
-  <label style="display: flex; align-items: center">
+<div class="body">
+  <label style="align-items: center">
     <h1 style="margin-right: 5px">text</h1>
-    <input style="width: 250px; height: 20px; margin-right: 20px" type="text" (change)="pushName($event.target.value)" value="{{userName}}">
+    <input style="width: 100%; height: 20px; margin-right: 20px" type="text" [(ngModel)]="userName" (ngModelChange)="pushName($event)">
     <h1 style="margin-right: 5px">title</h1>
-    <input style="width: 250px; height: 20px; margin-right: 20px" type="text" (change)="sendTitle($event.target.value)" value="{{titleTask}}">
+    <input style="width: 100%; height: 20px; margin-right: 20px" type="text" [(ngModel)]="titleTask" (ngModelChange)="sendTitle($event)">
   </label>
-  <button (click)="sendBE()">send</button>
+  <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; height: 50px;">
+    <button (click)="createTaskAndClear()">send</button>
+    <button (click)="clearFields()">reset</button>
+  </div>
 </div>
