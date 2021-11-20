@@ -1,3 +1,22 @@
 .body {
   width: 250px;
 }
+.input {
+  width: 100%;
+  box-sizing: border-box;
+  height: 30px;
+  border-radius: 6px;
+  padding: 0 5px;
+}
+
+.button {
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.button:hover {
+  box-shadow: 0 0 8px rgba(0,0,0, .5);
+}
+

@@ -1,55 +1,54 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {change, task} from '../app.component';
+
 
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
-  styleUrls: ['./tasks.component.css'],
+  styleUrls: ['./tasks.component.css', '../body/body.component.css'],
 })
+
 export class TasksComponent implements OnInit {
-  constructor() {}
-  @Input() tasks: any;
-  @Input() changeAmount: any;
-  @Input() changes: any;
+  constructor() { }
+  @Input() tasks!: task[];
+  @Input() changeAmount!: (id: number, title: string) => void;
+  @Input() deleteTask!: (id: number) => task[];
 
   change = false;
-  ngOnInit(): void {}
 
-  deleteTask(id: number): void {
-    this.tasks = this.tasks.filter((e: { id: number }) => e.id !== id);
-    this.changes = this.changes.filter(
-      (e: { idTask: number }) => e.idTask !== id
-    );
-    localStorage.setItem('tasks', JSON.stringify(this.tasks));
-    localStorage.setItem('changes', JSON.stringify(this.changes));
+  ngOnInit(): void {
+  }
+
+  deleteElem(id: number): void {
+    this.tasks = this.deleteTask(id);
   }
 
   changeTask(id: number): void {
     this.change = !this.change;
 
-    this.tasks = this.tasks.map((e: { id: number; change: boolean }) => {
-      if (e.id === id) {
-        e.change = !e.change;
-        return e;
+    this.tasks = this.tasks.map((item: task) => {
+      if (item.id === id) {
+        item.change = !item.change;
+        return item;
       }
-      e.change = false;
-      return e;
+      item.change = false;
+      return item;
     });
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
 
-  // @ts-ignore
-  iputChange(input, id: number): void {
-      this.tasks = this.tasks.map(
-        (e: { id: number; task: string; change: boolean, title: string }) => {
-          if (e.id === id) {
-            e.task = input.value;
-            this.changeAmount(id, e.title);
-            e.change = !e.change;
-            return e;
-          }
-          return e;
+  inputChange(input: any, id: number): void {
+    this.tasks = this.tasks.map(
+      (item: task) => {
+        if (item.id === id) {
+          item.task = input.target.value;
+          this.changeAmount(id, item.title);
+          item.change = !item.change;
+          return item;
         }
-      );
-      localStorage.setItem('tasks', JSON.stringify(this.tasks));
-    }
+        return item;
+      }
+    );
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+  }
 }

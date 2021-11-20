@@ -1,5 +1,5 @@
-<div style="display: flex; flex-direction: column"  *ngFor="let product of products">
-  <nav>
+<div  *ngFor="let product of products">
+  <nav class="link">
     <a routerLink="{{product.name}}" routerLinkActive="active">{{product.name}}</a>
   </nav>
 </div>

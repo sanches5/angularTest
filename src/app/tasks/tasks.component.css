@@ -1,0 +1,36 @@
+.tasks {
+  height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+  border: 1px solid black;
+  padding: 5px 30px;
+  width: 400px;
+  align-items: center;
+  border-radius: 6px;
+}
+
+.modal {
+  display: flex;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  background-color: rgba(0,0,0, .5);
+  align-items: center;
+}
+
+.bodyModal {
+  padding: 60px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  width: max-content;
+  margin: auto;
+  background-color: white;
+}

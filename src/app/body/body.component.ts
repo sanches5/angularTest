@@ -8,7 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class BodyComponent implements OnInit {
   @Input() pushName!: (s: string) => void;
   @Input() createTask!: () => void;
-  @Input() userName!: string;
+  @Input() textTask!: string;
   @Input() titleTask!: string;
   @Input() sendTitle!: (s: string) => void;
 
@@ -16,13 +16,15 @@ export class BodyComponent implements OnInit {
   clearFields(): void {
       this.pushName('');
       this.sendTitle('');
-      this.userName = '';
+      this.textTask = '';
       this.titleTask = '';
   }
 
   createTaskAndClear(): void {
-    this.createTask();
-    this.clearFields();
+    if (this.titleTask && this.textTask) {
+      this.createTask();
+      this.clearFields();
+    }
   }
 
   ngOnInit(): void {

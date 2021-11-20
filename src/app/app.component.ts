@@ -3,14 +3,14 @@ import {BodyComponent} from './body/body.component';
 import {TasksComponent} from './tasks/tasks.component';
 import {ListCheckComponent} from './listCheck/listCheck.component';
 
-type change = {
+export type change = {
   id: number
   idTask: number
   change: number
   title: string
 };
 
-type task = {
+export type task = {
   id: number
   change: boolean
   title: string
@@ -25,17 +25,14 @@ type task = {
 
 export class AppComponent {
   title = 'angularTest';
-  itemImageUrl: string = localStorage.getItem('value') || '';
-
+  text: string = localStorage.getItem('value') || '';
   tasks: task[] = JSON.parse(localStorage.getItem('tasks') as string) || [];
-
   changes: change[] = JSON.parse(localStorage.getItem('changes') as string) || [];
-
   titleTask: string = localStorage.getItem('title') || '';
-
+  deleteElemTask: (id: number) => task[] = this.deleteTask.bind(this);
 
   send = (value: string): void => {
-    this.itemImageUrl = value;
+    this.text = value;
     localStorage.setItem('value', value);
     console.log('send value input to local', value);
   }
@@ -47,31 +44,24 @@ export class AppComponent {
   }
 
   createTask = (): void => {
-    console.log('set value itemImageUrl', this.itemImageUrl);
+    console.log('set value text', this.text);
+    const tasksLocal: task[] = JSON.parse(localStorage.getItem('tasks') as string) || [];
     const id = this.tasks[this.tasks.length - 1 ]?.id + 1;
-    this.tasks = [...this.tasks, {id: id || 1, task: this.itemImageUrl, change: false, title: this.titleTask}];
+    this.tasks = [...tasksLocal, {id: id || 1, task: this.text, change: false, title: this.titleTask}];
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
 
+  deleteTask(id: number): task[] {
+    console.log(this.tasks, id, this.changes);
 
-  onChildLoaded = (component: Body) => {
-    if (component instanceof BodyComponent) {
-      component.userName = this.itemImageUrl;
-      component.pushName = this.send;
-      component.createTask = this.createTask;
-      component.sendTitle = this.sendTitle;
-      component.titleTask = this.titleTask;
-    }
+    this.tasks = this.tasks?.filter((item: task) => item.id !== id);
 
-    if (component instanceof TasksComponent) {
-      component.tasks = JSON.parse(localStorage.getItem('tasks') as string);
-      component.changeAmount = this.changeAmount;
-      component.changes = this.changes;
-    }
-
-    if (component instanceof ListCheckComponent) {
-      component.changes =  JSON.parse(localStorage.getItem('changes') as string);
-    }
+    this.changes = this.changes.filter(
+      (item: change) => item.idTask !== id
+    );
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    localStorage.setItem('changes', JSON.stringify(this.changes));
+    return this.tasks;
   }
 
   changeAmount = (idTask: number, name: string) => {
@@ -93,9 +83,28 @@ export class AppComponent {
       localStorage.setItem('changes', JSON.stringify(this.changes));
       return;
     }
-
     this.changes = [...this.changes, {id: id || 1, idTask, change: 1, title: name}];
     localStorage.setItem('changes', JSON.stringify(this.changes));
+  }
+
+  onChildLoaded = (component: Body) => {
+    if (component instanceof BodyComponent) {
+      component.textTask = this.text;
+      component.pushName = this.send;
+      component.createTask = this.createTask;
+      component.sendTitle = this.sendTitle;
+      component.titleTask = this.titleTask;
+    }
+
+    if (component instanceof TasksComponent) {
+      component.tasks = this.tasks  ;
+      component.changeAmount = this.changeAmount;
+      component.deleteTask = this.deleteElemTask;
+    }
+
+    if (component instanceof ListCheckComponent) {
+      component.changes =  JSON.parse(localStorage.getItem('changes') as string) || [];
+    }
   }
 }
 

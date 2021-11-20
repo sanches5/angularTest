@@ -1,26 +1,18 @@
-
-
 <div style="text-align: center;">
-  <h1>tasks works!</h1>
-  <div *ngIf="tasks.length">
-    <div *ngFor="let task of tasks" style="
-  display: flex;
-  justify-content:
-  space-between;
-  margin: 5px;
-  border: 1px solid black;
-  padding: 5px 30px;
-  width: 400px;
-  align-items: center;
-">
+  <h1>tasks</h1>
+  <div class="tasks" *ngIf="tasks.length">
+    <div class="task" *ngFor="let task of tasks">
       <h3>{{task.title}}</h3>
-      <button style="height: 30px" (click)="changeTask(task.id)">change</button>
-      <div style="overflow-wrap: anywhere;" *ngIf="!task.change" >{{task.task}}</div>
-      <label>
-        <input (change)="iputChange($event.target, task.id)" *ngIf="task.change" value="{{task.task}}"/>
-      </label>
-      <button style="height: 30px" (click)="deleteTask(task.id)">delete</button>
+      <button class="button" style="height: 30px" (click)="changeTask(task.id)">change</button>
+      <div style="overflow-wrap: anywhere;" *ngIf="!task.change">{{task.task}}</div>
+      <div class="modal" *ngIf="task.change">
+        <div class="bodyModal">
+          <h2>change task</h2>
+          <input #myInput class="input" (focusout)="inputChange($event, task.id)" value="{{task.task}}"/>
+          {{ myInput.focus() }}
+        </div>
+      </div>
+      <button class="button" style="height: 30px" (click)="deleteElem(task.id)">delete</button>
     </div>
   </div>
-
 </div>
